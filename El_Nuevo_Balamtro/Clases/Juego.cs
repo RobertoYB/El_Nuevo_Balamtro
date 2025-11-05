@@ -5,7 +5,7 @@ namespace El_Nuevo_Balamtro.Clases
     public abstract class Juego
     {
         public string Nombre { get; protected set; }
-        public Juego(string Nombre)
+        public Juego(string nombre)
         {
             Nombre = nombre;
         }
