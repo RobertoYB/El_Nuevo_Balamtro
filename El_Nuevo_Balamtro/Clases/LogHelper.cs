@@ -2,7 +2,7 @@ using System;
 
 namespace El_Nuevo_Balamtro.Clases;
 
-public class Calculador
+public class LogHelper
 {
 
 }
