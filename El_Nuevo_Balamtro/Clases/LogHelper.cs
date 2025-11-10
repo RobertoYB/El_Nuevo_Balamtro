@@ -1,5 +1,5 @@
 using System;
-namespace JuegosDeCartas.Core
+namespace El_Nuevo_Balamtro.Clases
 {
     public static class LogHelper
     {

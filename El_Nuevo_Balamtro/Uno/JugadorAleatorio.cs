@@ -1,5 +1,5 @@
 using System;
-namespace JuegosDeCartas.Uno
+namespace El_Nuevo_Balamtro.Uno
 {
     public class JugadorAleatorio : JugadorBase
     {
@@ -12,16 +12,16 @@ namespace JuegosDeCartas.Uno
             {
                 var carta = jugables[random.Next(jugables.Count)];
                 Mano.Remove(carta);
-                JuegosDeCartas.Core.LogHelper.Accion($"{Nombre} juega {carta}");
+                El_Nuevo_Balamtro.Core.LogHelper.Accion($"{Nombre} juega {carta}");
                 return carta;
             }
             if (mazo.Count > 0)
             {
                 var robada = mazo.Pop();
-                JuegosDeCartas.Core.LogHelper.Info($"{Nombre} roba una carta ({robada})");
+                El_Nuevo_Balamtro.Core.LogHelper.Info($"{Nombre} roba una carta ({robada})");
                 if (robada.PuedeJugarSobre(cartaActual))
                 {
-                    JuegosDeCartas.Core.LogHelper.Accion($"{Nombre} juega inmediatamente {robada}");
+                    El_Nuevo_Balamtro.Core.LogHelper.Accion($"{Nombre} juega inmediatamente {robada}");
                     return robada;
                 }
                 else
@@ -31,7 +31,7 @@ namespace JuegosDeCartas.Uno
             }
             else
             {
-                JuegosDeCartas.Core.LogHelper.Info($"{Nombre} no puede jugar y el mazo está vacío.");
+                El_Nuevo_Balamtro.Core.LogHelper.Info($"{Nombre} no puede jugar y el mazo está vacío.");
             }
             return cartaActual;
         }

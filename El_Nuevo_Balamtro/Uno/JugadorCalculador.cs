@@ -1,5 +1,5 @@
 using System;
-namespace JuegosDeCartas.Uno
+namespace El_Nuevo_Balamtro.Uno
 {
     public class JugadorCalculador : JugadorBase
     {
@@ -17,7 +17,7 @@ namespace JuegosDeCartas.Uno
                 if (cartaEspecial != null)
                 {
                     Mano.Remove(cartaEspecial);
-                    JuegosDeCartas.Core.LogHelper.Accion($"{Nombre} juega {cartaEspecial} para frenar a {siguiente.Nombre}");
+                    El_Nuevo_Balamtro.Core.LogHelper.Accion($"{Nombre} juega {cartaEspecial} para frenar a {siguiente.Nombre}");
                     return cartaEspecial;
                 }
             }
@@ -25,16 +25,16 @@ namespace JuegosDeCartas.Uno
             if (cartaNormal != null)
             {
                 Mano.Remove(cartaNormal);
-                JuegosDeCartas.Core.LogHelper.Accion($"{Nombre} juega {cartaNormal}");
+                El_Nuevo_Balamtro.Core.LogHelper.Accion($"{Nombre} juega {cartaNormal}");
                 return cartaNormal;
             }
             if (mazo.Count > 0)
             {
                 var robada = mazo.Pop();
-                JuegosDeCartas.Core.LogHelper.Info($"{Nombre} roba una carta ({robada})");
+                El_Nuevo_Balamtro.Core.LogHelper.Info($"{Nombre} roba una carta ({robada})");
                 if (robada.PuedeJugarSobre(cartaActual))
                 {
-                    JuegosDeCartas.Core.LogHelper.Accion($"{Nombre} juega inmediatamente {robada}");
+                    El_Nuevo_Balamtro.Core.LogHelper.Accion($"{Nombre} juega inmediatamente {robada}");
                     return robada;
                 }
                 else
@@ -42,7 +42,7 @@ namespace JuegosDeCartas.Uno
                     Mano.Add(robada);
                 }
             }
-            JuegosDeCartas.Core.LogHelper.Info($"{Nombre} no puede jugar.");
+            El_Nuevo_Balamtro.Core.LogHelper.Info($"{Nombre} no puede jugar.");
             return cartaActual;
         }
     }

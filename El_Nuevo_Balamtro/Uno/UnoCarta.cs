@@ -1,6 +1,6 @@
-using JuegosDeCartas.Core;
+using El_Nuevo_Balamtro.Clases;
 using System;
-namespace JuegosDeCartas.Uno
+namespace El_Nuevo_Balamtro.Uno
 {
     public enum TipoCarta
     {

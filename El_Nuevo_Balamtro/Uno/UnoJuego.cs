@@ -1,6 +1,6 @@
-using JuegosDeCartas.Core;
+using El_Nuevo_Balamtro.Clases;
 using System;
-namespace JuegosDeCartas.Uno
+namespace El_Nuevo_Balamtro.Uno
 {
     public class UnoJuego : Juego
     {
@@ -27,12 +27,12 @@ namespace JuegosDeCartas.Uno
             } while (primera.Tipo == TipoCarta.MasCuatro);
             descarte.Push(primera);
             UnoCarta cartaActual = descarte.Peek();
-            JuegosDeCartas.Core.LogHelper.Info($"Comienza el juego con: {cartaActual}");
+            El_Nuevo_Balamtro.Core.LogHelper.Info($"Comienza el juego con: {cartaActual}");
             int turno = 0;
             while (true)
             {
                 var jugador = jugadores[turno];
-                JuegosDeCartas.Core.LogHelper.Info($"\n--- Turno de {jugador.Nombre} ---");
+                El_Nuevo_Balamtro.Core.LogHelper.Info($"\n--- Turno de {jugador.Nombre} ---");
                 var cartaJugada = jugador.JugarTurno(cartaActual, mazo, descarte, jugadores, turno);
                 if (cartaJugada != cartaActual)
                 {
@@ -41,10 +41,10 @@ namespace JuegosDeCartas.Uno
                     AplicarEfecto(cartaJugada, ref turno);
                 }
                 if (jugador.Mano.Count == 1)
-                    JuegosDeCartas.Core.LogHelper.Advertencia($"{jugador.Nombre} grita ¡UNO!");
+                    El_Nuevo_Balamtro.Core.LogHelper.Advertencia($"{jugador.Nombre} grita ¡UNO!");
                 else if (jugador.Mano.Count == 0)
                 {
-                    JuegosDeCartas.Core.LogHelper.Exito($"{jugador.Nombre} ha ganado el juego de UNO!");
+                    El_Nuevo_Balamtro.Core.LogHelper.Exito($"{jugador.Nombre} ha ganado el juego de UNO!");
                     break;
                 }
                 turno = (turno + direccion + jugadores.Count) % jugadores.Count;
@@ -57,7 +57,7 @@ namespace JuegosDeCartas.Uno
                     var rnd = new Random();
                     foreach (var c in cartasParaReutilizar.OrderBy(x => rnd.Next()))
                         mazo.Push(c);
-                    JuegosDeCartas.Core.LogHelper.Info("♻️  El mazo se ha rebarajado.");
+                    El_Nuevo_Balamtro.Core.LogHelper.Info("♻️  El mazo se ha rebarajado.");
                 }
             }
         }
@@ -99,23 +99,23 @@ namespace JuegosDeCartas.Uno
             {
                 case TipoCarta.Reversa:
                     direccion *= -1;
-                    JuegosDeCartas.Core.LogHelper.Info("🔁 Se cambia el sentido de juego");
+                    El_Nuevo_Balamtro.Core.LogHelper.Info("🔁 Se cambia el sentido de juego");
                     break;
                 case TipoCarta.Bloqueo:
                     turno = (turno + direccion + jugadores.Count) % jugadores.Count;
-                    JuegosDeCartas.Core.LogHelper.Info("🚫 Siguiente jugador pierde turno");
+                    El_Nuevo_Balamtro.Core.LogHelper.Info("🚫 Siguiente jugador pierde turno");
                     break;
                 case TipoCarta.MasDos:
                     var siguiente = jugadores[(turno + direccion + jugadores.Count) % jugadores.Count];
                     for (int i = 0; i < 2; i++)
                         siguiente.Mano.Add(mazo.Pop());
-                    JuegosDeCartas.Core.LogHelper.Info($"{siguiente.Nombre} toma +2 cartas");
+                    El_Nuevo_Balamtro.Core.LogHelper.Info($"{siguiente.Nombre} toma +2 cartas");
                     break;
                 case TipoCarta.MasCuatro:
                     var siguiente4 = jugadores[(turno + direccion + jugadores.Count) % jugadores.Count];
                     for (int i = 0; i < 4; i++)
                         siguiente4.Mano.Add(mazo.Pop());
-                    JuegosDeCartas.Core.LogHelper.Info($"{siguiente4.Nombre} toma +4 cartas y se cambia color");
+                    El_Nuevo_Balamtro.Core.LogHelper.Info($"{siguiente4.Nombre} toma +4 cartas y se cambia color");
                     break;
             }
         }
